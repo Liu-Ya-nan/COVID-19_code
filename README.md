@@ -1,38 +1,17 @@
 # COVID-19_code
-# Quickstart/Demo
-
-<!-- Add a demo for your project -->
-
-I believe that you should bring value to the reader as soon as possible. You should be able to get the user up and running with your project with minimal friction.
-
-If you have a quickstart guide, this is where it should be.
-
-Alternatively, you can add a demo to show what your project can do.
 
 # Table of Contents
 - [Project Title](#project-title)
-- [Quickstart/Demo](#quickstartdemo)
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Usage](#usage)
 
 # Installation
-[(Back to top)](#table-of-contents)
 
-> **Note**: For longer README files, I usually add a "Back to top" buttton as shown above. It makes it easy to navigate.
-
-This is where your installation instructions go.
-
-You can add snippets here that your readers can copy-paste with click:
-
-```shell
-gh repo clone navendu-pottekkat/awesome-readme
-```
+Install the f1.yml environment. 
 
 # Usage
-[(Back to top)](#table-of-contents)
 
-Next, you have to explain how to use your project. You can create subsections under here to explain more clearly.
 ## Steps of runing code:
 After installing the environment, proceed as follows：
 1 - Train your network using "MODE = train" in main.py --> the trained model will be saved as Checkpoint in results folder.
