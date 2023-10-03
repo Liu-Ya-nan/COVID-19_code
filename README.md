@@ -15,9 +15,6 @@ Alternatively, you can add a demo to show what your project can do.
 - [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Development](#development)
-- [Contribute](#contribute)
-- [License](#license)
 
 # Installation
 [(Back to top)](#table-of-contents)
@@ -36,35 +33,28 @@ gh repo clone navendu-pottekkat/awesome-readme
 [(Back to top)](#table-of-contents)
 
 Next, you have to explain how to use your project. You can create subsections under here to explain more clearly.
+## Steps of runing code:
+After installing the environment, proceed as follows：
+1 - Train your network using "MODE = train" in main.py --> the trained model will be saved as Checkpoint in results folder.
 
-# Development
-[(Back to top)](#table-of-contents)
+Note: We train 5 differenct model where all have the same hyper parameter and set up but they have different random seed. Finally, for all the results presented in the paper we average the results of 5 run and report them. Thus for the results we want to report such as AUCs, FNRs, etc, when we are generating them it is essencial to remane them such that the name contain the run number. Later we use this naming protocol to gather and averaging the resilts over 5 run. At each section we wrote a guidline about what csv files needed to be raname and how.
 
-You have people who want to use your project and then you have people who want contribute to your project.
+2 - Test your network using "MODE = test" and runing main.py
 
-This is where you provide instructions for the latter.
+The following csv files are generated: a) Eval.csv (contain AUC on validation set)  b)TestEval.csv (The AUC on test set for the model) c) True.csv (The true labels on Test set) d) preds.csv (The probability of each disease per image)  e) bipred.csv (The binary prediction of each label) f) Threshold.csv (The thereshold utilized to get binary predictions from probabilities per disease. It is calculated based on maximizing f1 score on validation set)
 
-Add instructions on how to set up a development environment, clone, and build the project.
+Rename TestEval.csv to Evel*.csv, where * is the number of run (e.g Evel1.csv for run1).
 
-You can use the code snippets here as well:
+3 - Run preprocess() in FPRFNR. py to add metadata to the true labels of the test dataset and save it as True_withMeta.csv. This file and binary prediction bi_pred.csv of each result folder (associated to a random seed) are used to calculated TPRs.
 
-```shell
-command to clone your project
-command to build your project
-command to run your project in development mode
-```
+4 - rename the results forlder followed by the applied random seed for the checkpoint. (e.g. for random seed 70 use results70)
 
+Do the step 2 to 3 for all 5 runs per dataset.
 
-# Contribute
-[(Back to top)](#table-of-contents)
+5 - create a folder and call it "results" to save the results of combining the 5 run.
 
-You can use this section to highlight how people can contribute to your project.
+6 - Run the FPRFNR.py : Calculate the corresponding FPR/FNR value.
 
-You can add information on how they can open issues or how they can sponsor the project.
+7 - Run the ConfidenceFromipynb.py : It gives: a) Percentage of images per attribiute in whole data (test, train and validation). b) AUC performance over 5 run.
 
-# License
-[(Back to top)](#table-of-contents)
-
-You can also mention what license the project uses. I usually add it like this:
-
-[MIT license](./LICENSE)
+8 - Run the plotFPRFNR.py : plot the disparity figures of the 5 run.
